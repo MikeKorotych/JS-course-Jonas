@@ -127,7 +127,17 @@ nav {
   grid-row: 2 / span 3;
   background-color: #fff;
   border-radius: 1rem;
-  overflow: scroll;
+  overflow-y: scroll;
+}
+
+.movements::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f3f3f3;
+}
+
+.movements::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(85, 85, 85, 0.507);
 }
 
 .movements__row {
@@ -275,14 +285,18 @@ h2 {
   border: none;
   border-radius: 0.7rem;
   font-size: 1.8rem;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.4);
   cursor: pointer;
   transition: all 0.3s;
 }
 
+.form__btn:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
 .form__btn:focus {
   outline: none;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .logout-timer {
@@ -294,4 +308,13 @@ h2 {
 
 .timer {
   font-weight: 600;
+}
+
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.clocks {
+  /* width: 100px; */
+  padding: 1rem;
 }
