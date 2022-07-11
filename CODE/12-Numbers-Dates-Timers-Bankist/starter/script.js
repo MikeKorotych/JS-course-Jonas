@@ -556,3 +556,5 @@ let clocksInterval = setInterval(function () {
 }, 1000);
 
 const clocksDOM = document.querySelector('.clocks');
+
+// wait for resolving
