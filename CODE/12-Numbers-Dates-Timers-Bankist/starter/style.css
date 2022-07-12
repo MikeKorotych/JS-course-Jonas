@@ -24,6 +24,7 @@ body {
 }
 
 nav {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -316,5 +317,10 @@ input[type='number']::-webkit-inner-spin-button {
 
 .clocks {
   /* width: 100px; */
+  position: absolute;
+  bottom: -30%;
+  left: 1%;
+  /* transform: translateX(-50%); */
   padding: 1rem;
+  opacity: 0.6;
 }

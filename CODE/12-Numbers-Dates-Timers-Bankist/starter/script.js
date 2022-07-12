@@ -180,13 +180,38 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+const startLogOutTimer = function () {
+  const tick = function () {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    // IN Each call, print the remainig time to UI
+    labelTimer.textContent = `${min}: ${sec}`;
+
+    //When the time at 0, sptop timer and log out user
+    if (time == 0) {
+      clearInterval(timer);
+      labelWelcome.textContent = `Log in to get started`;
+      containerApp.style.opacity = '0';
+    }
+    // Decrese 1s
+    time--;
+  };
+  // Set time to 5 minutes
+  let time = 120;
+  // Call timer every second
+  tick();
+  const timer = setInterval(tick, 1000);
+
+  return timer;
+};
+
 // Event handler
-let currentAccount;
+let currentAccount, timer;
 
 // FAKE ALWAYS LOGGED IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = '1';
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = '1';
 
 btnLogin.addEventListener('click', e => {
   // prevent form from submiting
@@ -232,6 +257,9 @@ btnLogin.addEventListener('click', e => {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    // Timer
+    if (timer) clearInterval(timer);
+    timer = startLogOutTimer();
     // Update UI
     updateUI(currentAccount);
   }
@@ -261,6 +289,10 @@ btnTransfer.addEventListener('click', e => {
 
     // Update UI
     updateUI(currentAccount);
+
+    // reset timer
+    clearInterval(timer);
+    timer = startLogOutTimer();
   }
 });
 
@@ -279,6 +311,10 @@ btnLoan.addEventListener('click', function (e) {
 
       // Update UI
       updateUI(currentAccount);
+
+      // reset timer
+      clearInterval(timer);
+      timer = startLogOutTimer();
     }, 2500);
   }
   inputLoanAmount.value = '';
@@ -550,11 +586,5 @@ let clocksInterval = setInterval(function () {
     second: 'numeric',
   }).format(now);
 
-  console.log(time);
-
-  return time;
+  document.querySelector('.clocks').textContent = time;
 }, 1000);
-
-const clocksDOM = document.querySelector('.clocks');
-
-// wait for resolving
