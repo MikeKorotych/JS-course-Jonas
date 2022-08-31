@@ -1,0 +1,19 @@
+{
+  "name": "starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "Mike",
+  "license": "ISC",
+  "dependencies": {
+    "core-js": "^3.25.0",
+    "leaflet": "^1.8.0",
+    "lodash-es": "^4.17.15",
+    "parcel": "^2.7.0",
+    "regenerator-runtime": "^0.13.9"
+  }
+}
